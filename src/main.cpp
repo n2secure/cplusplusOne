@@ -7,12 +7,26 @@
 #include "job.h"
 #include "team.h"
 
+using namespace std;
+
 int main(int argc, char *argv[])
 {
     // char fArray[] = "clint";
     // char lArray[] = "eastwood";
     Person* person = 0;
 
+    const string hello = "Hello";
+    const string message =  hello+ ", world" + "!";
+    const string exclam = "!";
+    const string message2 = string("Hello") +  string(", world") + exclam;
+
+    // char *strVal = hello.c_str();
+    char str2[30] = "\0";
+    
+    // std::cout << strcpy(strVal,message.c_str())  << std::endl;
+    std::cout << strcpy(str2,message.c_str())  << std::endl;
+
+    std::cout << "hello=" << hello << std::endl;
     Team *team = new Team();
 
     // person = new Person(fArray,lArray);
@@ -33,6 +47,11 @@ int main(int argc, char *argv[])
     qtr = new char[strlen("joyce")+1];
     strcpy(qtr,"joyce");
     person = new Manager(ptr,qtr);
+
+    Manager mg(ptr,qtr);
+    const Manager& mRef = mg;
+    mRef.getIntVal(); 
+
     Person *personNew = new Person();
     *personNew = *person;
     Person *personNew2 = new Person(*personNew);
