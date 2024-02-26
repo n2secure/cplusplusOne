@@ -1,4 +1,6 @@
 #include <string>
+#include <memory>
+#include <vector>
 
 #ifndef QUALIFICATION_H
 #define QUALIFICATION_H            const string& highSchool,
@@ -9,6 +11,12 @@ using namespace std;
 
 class Qualification {
     public:
+        typedef shared_ptr<Qualification> SmartPtr;
+        typedef Qualification VALUE_TYPE;
+        typedef Qualification& REFERENCE_TYPE;
+        typedef vector<Qualification> VECTOR_TYPE;
+        typedef vector<Qualification>& VECTOR_REF_TYPE;
+
         Qualification() : university(""),highSchool(""),
          tradeUnion(""),apprentice("") {
         }

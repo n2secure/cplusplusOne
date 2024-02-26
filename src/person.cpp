@@ -7,7 +7,9 @@
 Person::Person(){
 }
 
-Person::Person(char *_fName,char *_lName){
+//Person::Person(char *_fName,char *_lName){
+Person::Person(char *_fName,char *_lName,const string& _address) : 
+    address(_address) {
     init(_fName,_lName);
 }
 

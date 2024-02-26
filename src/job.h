@@ -1,6 +1,7 @@
 
 #include <string>
 #include <memory>
+#include <iostream>
 
 #ifndef JOB_H
 #define JOB_H

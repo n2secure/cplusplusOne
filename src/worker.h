@@ -12,8 +12,8 @@ using namespace std;
 class Worker : public Person {
     public:
         Worker();
-        Worker(char *_fName,char *_lName,shared_ptr<Job> myJob);
-
+        // Worker(char *_fName,char *_lName,shared_ptr<Job> myJob);
+        Worker(char *_fName,char *_lName,shared_ptr<Job> myJob,const string& address);
     virtual ~Worker();
     friend ostream& operator<<(ostream &os, const Worker& p) ;
 
