@@ -23,6 +23,8 @@ extern void changeVector(Manager::VECTOR_STR& v);
 template void printList<int>(vector<int>& tList);
 // template void printList<string>(vector<string>& tList);
 
+template <typename T>
+int TempClass<T>::myValue = 99; 
 
 // bool sortFunc(const string& _a,const string& _b){
 //     return _a.compare(_b);
