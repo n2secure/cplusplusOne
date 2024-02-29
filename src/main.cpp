@@ -10,7 +10,10 @@
 #include "person.h"
 #include "qualification.h"
 #include "tempClass.h"
+#include "elementmap.h"
 #include <memory>
+#include <algorithm>
+#include <iterator>
 
 using namespace std;
 
@@ -69,6 +72,53 @@ shared_ptr<Qualification::VECTOR_TYPE> createQalifications(){
     return qv;
 }
 
+void func2(){
+    map<ElementMap,string> myMap;
+    ElementMap m1("a",999);
+    myMap.insert(make_pair(m1,"999"));
+    m1 = ElementMap("b",998);
+    myMap.insert(make_pair(m1,"998"));
+    m1 = ElementMap("c",997);
+    myMap.insert(make_pair(m1,"997"));
+    m1 = ElementMap("d",996);
+    myMap.insert(make_pair(m1,"996"));
+    m1 = ElementMap("e",995);
+    myMap.insert(make_pair(m1,"995"));
+    m1 = ElementMap("f",1);
+    myMap.insert(make_pair(m1,"1"));
+
+    for (ElementMap::MAP_TYPE_ITERATOR it = myMap.begin();
+        it != myMap.end(); it++){
+            cout << "elementMap is : []"<<it->first << ","
+                <<it->second << "]" << endl;
+        }
+
+}
+
+void lambdafunc(){
+    int sum=0;
+    auto f1 = [sum](int a){ return sum+a;};
+
+    for (int i=0; i < 100; i++){
+        sum += f1(i);
+    }
+    cout << "sum=" << sum << endl;
+
+    sum=0;
+    auto f2 = [&](int a){ sum+=a;};
+    for (int i=0; i < 100; i++){
+        f2(i);
+    }
+    cout << "sum=" << sum << endl;
+
+   sum=0;
+    auto f3 = [&sum](int a){ sum+=a;};
+    for (int i=0; i < 100; i++){
+        f3(i);
+    }
+    cout << "sum=" << sum << endl;
+}
+
 void func1(){
 
     char *ptr = new char[strlen("james")+1];
@@ -94,9 +144,16 @@ void func1(){
     man->getIntList()->push_back(90);
     man->getIntList()->push_back(999);
 
+    auto tot = count_if(man->getIntList()->begin(),man->getIntList()->end(),
+        [](int num){ return num  > 100;});
+
+    cout << "tot=" << tot << endl;
+
     sort(man->getIntList()->begin(),man->getIntList()->end(),[](const int& a,const int& b){ return a <b;});
     printList(*man->getIntList());
 
+    copy(man->getIntList()->begin(),man->getIntList()->end(),
+        ostream_iterator<int>(cout," ostream\n"));
 
     man->getSupervisors()->push_back("john");
     man->getSupervisors()->push_back("doe");
@@ -110,7 +167,7 @@ void func1(){
     // sort(supervisors.begin(),supervisors.end(),Manager::MySortClass());
     // sort(supervisors.begin(),supervisors.end(),std::string::compare);
     // sort(supervisors.begin(),supervisors.end(),sortFunc);
-    sort(man->getSupervisors()->begin(),man->getSupervisors()->end(),[](const string& a,const string& b){ return a.compare(b);});
+    sort(man->getSupervisors()->begin(),man->getSupervisors()->end(),[=](const string& a,const string& b){ return a.compare(b);});
 
     printList(*man->getSupervisors());
 
@@ -162,7 +219,8 @@ void func1(){
 
 int main(int argc, char *argv[])
 {
-    
+    lambdafunc();
+    func2();
     func1();
     // char fArray[] = "clint";
     // char lArray[] = "eastwood";
